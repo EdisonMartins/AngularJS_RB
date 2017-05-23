@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX - Experience!</title>
+
+	<script>
+		var get = function(url, callback){
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4){
+					callback(xhr.responseText, xhr.status);
+				}
+			};
+
+			xhr.open('GET', url);
+			xhr.send();
+		};
+
+	</script>
+
+	<script>
+		window.onload = function(e){ 
+			console.log("window.onload");
+			jsonp('http://api.buscaescolas.com/totalizador/numeros', function(data) {
+				document.getElementById('ajax').innerHTML = data;
+			});
+		}
+
+	</script>
+
+	<script>
+		function jsonp(url, callback) {
+			var callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+			window[callbackName] = function(data) {
+				delete window[callbackName];
+				document.body.removeChild(script);
+				callback(data);
+			};
+		}
+	</script>
+
+</head>
+<body>
+	<h3>AJAX - Experience!</h3>
+	<div id="ajax"></div>
+</body>
+</html>
