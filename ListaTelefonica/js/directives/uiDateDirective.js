@@ -13,11 +13,15 @@ angular.module("listaTelefonica").directive("uiDate", function ($filter) {
 				return date;
 			};
 
+			//Observa o evento keyup
 			element.bind("keyup", function () {
+				//Formata o viewValue
 				ctrl.$setViewValue(_formatDate(ctrl.$viewValue));
+				//Renderiza - Importante para performance.
 				ctrl.$render();
 			});
 
+			// Fazer o parse de String para date
 			ctrl.$parsers.push(function (value) {
 				if (value.length === 10) {
 					var dateArray = value.split("/");
@@ -25,6 +29,7 @@ angular.module("listaTelefonica").directive("uiDate", function ($filter) {
 				}
 			});
 
+			//Transformorma Date em uma String de acordo com o padrão dd/MM/yyyy
 			ctrl.$formatters.push(function (value) {
 				return $filter("date")(value, "dd/MM/yyyy");
 			});
