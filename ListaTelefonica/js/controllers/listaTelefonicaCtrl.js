@@ -1,4 +1,4 @@
-		angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $filter, contatosAPI, operadorasAPI, serialGenerator) {
+		angular.module('listaTelefonica').controller("listaTelefonicaCtrl", function($scope, $filter, contatosAPI, operadorasAPI, serialGenerator) {
 			console.log(serialGenerator.generate());
 			$scope.app = "Lista Telefônica";
 
