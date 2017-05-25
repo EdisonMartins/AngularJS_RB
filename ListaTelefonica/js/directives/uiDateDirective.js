@@ -17,11 +17,12 @@ angular.module("listaTelefonica").directive("uiDate", function ($filter) {
 			element.bind("keyup", function () {
 				//Formata o viewValue
 				ctrl.$setViewValue(_formatDate(ctrl.$viewValue));
-				//Renderiza - Importante para performance.
+				//Renderiza
 				ctrl.$render();
 			});
 
 			// Fazer o parse de String para date
+			//Permite a interação com scope no momento certo.
 			ctrl.$parsers.push(function (value) {
 				if (value.length === 10) {
 					var dateArray = value.split("/");
